@@ -144,17 +144,7 @@ const GitHubSection = () => {
                 alt="GitHub stats"
                 className="w-full rounded-lg"
                 loading="lazy"
-              />
-            </div>
-
-            {/* GitHub Streak Stats */}
-            <div className="mt-4">
-              <img
-                src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&sideLabels=94a3b8&dates=94a3b8&currStreakNum=e2e8f0&sideNums=e2e8f0`}
-                alt="GitHub streak stats"
-                className="w-full rounded-lg"
-                loading="lazy"
-              />
+              />                       
             </div>
           </motion.div>
         </div>
