@@ -146,15 +146,6 @@ const GitHubSection = () => {
                 loading="lazy"
               />                       
             </div>
-            {/* GitHub Streak Stats */}
-<div className="mt-4">
-  <img
-    src={`https://nirzak-streak-stats.vercel.app/?user=${GITHUB_USERNAME}&theme=dark&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399`}
-    alt="GitHub Streak Stats"
-    className="w-full rounded-lg"
-    loading="lazy"
-  />
-</div>
           </motion.div>
         </div>
       </div>
