@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Cpu, Globe, Lightbulb, Heart } from "lucide-react";
 
 const profileImage =
-  "public/profile.png"; // <-- ADD YOUR IMAGE URL HERE
+  "/profile.png"; // <-- ADD YOUR IMAGE URL HERE
 
 const highlights = [
   { icon: Cpu, title: "AI & ML", desc: "Building intelligent systems with Python, TensorFlow, and scikit-learn" },
@@ -92,8 +92,8 @@ const AboutSection = () => {
             <div><span className="text-muted-foreground">role:</span> <span className="text-green-400">"Full Stack Developer & AI Engineer"</span>,</div>
             <div><span className="text-muted-foreground">location:</span> <span className="text-green-400">"India"</span>,</div>
             <div><span className="text-muted-foreground">experience:</span> <span className="text-yellow-400">2</span><span className="text-muted-foreground">+</span> <span className="text-green-400">"years"</span>,</div>
-            <div><span className="text-muted-foreground">repos:</span> <span className="text-yellow-400">21</span>,</div>
-            <div><span className="text-muted-foreground">contributions:</span> <span className="text-yellow-400">507</span>,</div>
+            <div><span className="text-muted-foreground">repos:</span> <span className="text-yellow-400">21+</span>,</div>
+            <div><span className="text-muted-foreground">contributions:</span> <span className="text-yellow-400">507+</span>,</div>
             <div><span className="text-muted-foreground">passions:</span> [<span className="text-green-400">"AI/ML"</span>, <span className="text-green-400">"APIs"</span>, <span className="text-green-400">"Open Source"</span>],</div>
             <div><span className="text-muted-foreground">status:</span> <span className="text-green-400">"Open to Opportunities"</span></div>
           </div>
