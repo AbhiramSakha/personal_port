@@ -1,13 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Activity, GitCommit, Star, BookOpen, Users, Code } from "lucide-react";
-
-const stats = [
-  { icon: BookOpen, label: "Public Repos", value: "21" },
-  { icon: GitCommit, label: "Contributions", value: "507+" },
-  { icon: Users, label: "Followers", value: "1" },
-  { icon: Star, label: "Stars Earned", value: "0" },
-];
 
 const languages = [
   { name: "Python", pct: 40, color: "bg-blue-500" },
@@ -17,9 +10,43 @@ const languages = [
   { name: "Other", pct: 3, color: "bg-gray-400" },
 ];
 
+const GITHUB_USERNAME = "AbhiramSakha";
+
 const GitHubSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [stats, setStats] = useState([
+    { icon: BookOpen, label: "Public Repos", value: "—" },
+    { icon: GitCommit, label: "Contributions", value: "—" },
+    { icon: Users, label: "Followers", value: "—" },
+    { icon: Star, label: "Stars Earned", value: "—" },
+  ]);
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        const userRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
+        const user = await userRes.json();
+
+        const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
+        const repos = await reposRes.json();
+
+        const totalStars = Array.isArray(repos)
+          ? repos.reduce((sum: number, r: any) => sum + (r.stargazers_count || 0), 0)
+          : 0;
+
+        setStats([
+          { icon: BookOpen, label: "Public Repos", value: String(user.public_repos ?? "—") },
+          { icon: GitCommit, label: "Contributions", value: "507+" },
+          { icon: Users, label: "Followers", value: String(user.followers ?? "—") },
+          { icon: Star, label: "Stars Earned", value: String(totalStars) },
+        ]);
+      } catch {
+        // keep defaults on error
+      }
+    };
+    fetchGitHubData();
+  }, []);
 
   return (
     <section id="github" className="relative" ref={ref}>
@@ -66,14 +93,14 @@ const GitHubSection = () => {
               Contribution Graph
             </h3>
             <img
-              src="https://github-readme-activity-graph.vercel.app/graph?username=AbhiramSakha&theme=tokyo-night&hide_border=true&area=true&bg_color=transparent"
-              alt="GitHub contribution graph for AbhiramSakha"
+              src={`https://github-readme-activity-graph.vercel.app/graph?username=${GITHUB_USERNAME}&theme=tokyo-night&hide_border=true&area=true&bg_color=transparent`}
+              alt="GitHub contribution graph"
               className="w-full rounded-lg"
               loading="lazy"
             />
           </motion.div>
 
-          {/* Language Usage */}
+          {/* Language Usage + Stats */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -85,7 +112,6 @@ const GitHubSection = () => {
               Language Usage
             </h3>
 
-            {/* Bar chart */}
             <div className="flex h-4 rounded-full overflow-hidden mb-6">
               {languages.map((lang) => (
                 <motion.div
@@ -114,8 +140,8 @@ const GitHubSection = () => {
             {/* GitHub Stats Card */}
             <div className="mt-6">
               <img
-                src="https://github-readme-stats.vercel.app/api?username=AbhiramSakha&theme=transparent&hide_border=true&include_all_commits=true&count_private=false&title_color=34d399&text_color=94a3b8&icon_color=34d399"
-                alt="GitHub stats for AbhiramSakha"
+                src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&theme=transparent&hide_border=true&include_all_commits=true&count_private=false&title_color=34d399&text_color=94a3b8&icon_color=34d399`}
+                alt="GitHub stats"
                 className="w-full rounded-lg"
                 loading="lazy"
               />
@@ -124,8 +150,8 @@ const GitHubSection = () => {
             {/* GitHub Streak Stats */}
             <div className="mt-4">
               <img
-                src="https://github-readme-streak-stats.herokuapp.com/?user=AbhiramSakha&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&sideLabels=94a3b8&dates=94a3b8&currStreakNum=e2e8f0&sideNums=e2e8f0"
-                alt="GitHub streak stats for AbhiramSakha"
+                src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&sideLabels=94a3b8&dates=94a3b8&currStreakNum=e2e8f0&sideNums=e2e8f0`}
+                alt="GitHub streak stats"
                 className="w-full rounded-lg"
                 loading="lazy"
               />
