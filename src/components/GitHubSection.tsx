@@ -38,8 +38,8 @@ const GitHubSection = () => {
         setStats([
           { icon: BookOpen, label: "Public Repos", value: String(user.public_repos ?? "—") },
           { icon: GitCommit, label: "Contributions", value: "507+" },
-          { icon: Users, label: "Followers", value: String(user.followers ?? "—") },
-          { icon: Star, label: "Stars Earned", value: String(totalStars) },
+          { icon: Users, label: "Followers", value: "1+" },
+          { icon: Star, label: "Stars Earned", value: "3+" },
         ]);
       } catch {
         // keep defaults on error
