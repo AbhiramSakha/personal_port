@@ -138,23 +138,24 @@ const GitHubSection = () => {
             </div>
 
             {/* GitHub Stats Card */}
-            <div className="mt-6">
-              <img
-                src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&theme=transparent&hide_border=true&include_all_commits=true&count_private=false&title_color=34d399&text_color=94a3b8&icon_color=34d399`}
-                alt="GitHub stats"
-                className="w-full rounded-lg"
-                loading="lazy"
-              />                       
-            </div>
-            {/* GitHub Streak Stats */}
-          <div className="mt-4">
+          <div className="mt-6">
             <img
-              src={`https://nirzak-streak-stats.vercel.app/?user=${GITHUB_USERNAME}&theme=dark&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399`}
-              alt="GitHub Streak Stats"
+              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&theme=transparent&hide_border=true&include_all_commits=true&count_private=false&title_color=34d399&text_color=94a3b8&icon_color=34d399`}
+              alt="GitHub stats"
               className="w-full rounded-lg"
               loading="lazy"
-            />
-          </div>
+          />
+      </div>
+
+          {/* GitHub Streak Stats */}
+        <div className="mt-4">
+          <img
+            src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399`}
+            alt="GitHub Streak Stats"
+            className="w-full rounded-lg"
+            loading="lazy"
+        />
+        </div>
           </motion.div>
         </div>
       </div>
