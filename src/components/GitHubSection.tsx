@@ -148,14 +148,14 @@ const GitHubSection = () => {
       </div>
 
           {/* GitHub Streak Stats */}
-          <div className="mt-4">
-            <img
-              src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&cache_seconds=1800`}
-              alt="GitHub Streak Stats"
-              className="w-full rounded-lg"
-              loading="lazy"
-          />
-      </div>
+<div className="mt-4">
+  <img
+    src={`https://github-readme-streak-stats-eight.vercel.app/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399`}
+    alt="GitHub Streak Stats"
+    className="w-full rounded-lg"
+    loading="lazy"
+  />
+</div>
           </motion.div>
         </div>
       </div>
