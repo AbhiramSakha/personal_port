@@ -147,7 +147,7 @@ const GitHubSection = () => {
           />
       </div>
 
-          {/* GitHub Streak Stats */}
+         {/* GitHub Streak Stats */}
 <div className="mt-4">
   <img
     src={`https://github-readme-streak-stats-eight.vercel.app/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399`}
