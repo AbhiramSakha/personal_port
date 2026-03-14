@@ -15,7 +15,6 @@ const GITHUB_USERNAME = "AbhiramSakha";
 const GitHubSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-
   const [stats, setStats] = useState([
     { icon: BookOpen, label: "Public Repos", value: "—" },
     { icon: GitCommit, label: "Contributions", value: "—" },
@@ -23,87 +22,48 @@ const GitHubSection = () => {
     { icon: Star, label: "Stars Earned", value: "—" },
   ]);
 
-  const [streak, setStreak] = useState(0);
-
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-
-        /* Fetch user profile */
         const userRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
         const user = await userRes.json();
 
-        /* Fetch repositories */
-        const reposRes = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`
-        );
+        const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
         const repos = await reposRes.json();
 
         const totalStars = Array.isArray(repos)
-          ? repos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0)
+          ? repos.reduce((sum: number, r: any) => sum + (r.stargazers_count || 0), 0)
           : 0;
 
         setStats([
           { icon: BookOpen, label: "Public Repos", value: String(user.public_repos ?? "—") },
-          { icon: GitCommit, label: "Contributions", value: "731+" },
-          { icon: Users, label: "Followers", value: String(user.followers ?? "—") },
-          { icon: Star, label: "Stars Earned", value: String(totalStars) },
+          { icon: GitCommit, label: "Contributions", value: "507+" },
+          { icon: Users, label: "Followers", value: "1+" },
+          { icon: Star, label: "Stars Earned", value: "3+" },
         ]);
-
-        /* Fetch contribution data */
-        const contribRes = await fetch(
-          `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`
-        );
-
-        const contribData = await contribRes.json();
-
-        const weeks = contribData.contributions.weeks;
-
-        const days = weeks
-          .flatMap((week: any) => week.contributionDays)
-          .reverse();
-
-        let streakCount = 0;
-
-        for (const day of days) {
-          if (day.contributionCount > 0) {
-            streakCount++;
-          } else {
-            break;
-          }
-        }
-
-        setStreak(streakCount);
-
-      } catch (error) {
-        console.error(error);
+      } catch {
+        // keep defaults on error
       }
     };
-
     fetchGitHubData();
   }, []);
 
   return (
     <section id="github" className="relative" ref={ref}>
       <div className="section-container">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <span className="code-tag mb-4 inline-block">{"// github"}</span>
-
           <h2 className="section-title">
             GitHub <span className="gradient-text">Activity</span>
           </h2>
-
-          <p className="section-subtitle">
-            My open-source contributions and coding activity overview.
-          </p>
+          <p className="section-subtitle">My open-source contributions and coding activity overview.</p>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Stats grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {stats.map((stat, i) => (
             <motion.div
@@ -121,7 +81,6 @@ const GitHubSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-
           {/* Contribution Graph */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -133,7 +92,6 @@ const GitHubSection = () => {
               <Activity className="w-4 h-4 text-primary" />
               Contribution Graph
             </h3>
-
             <img
               src={`https://github-readme-activity-graph.vercel.app/graph?username=${GITHUB_USERNAME}&theme=tokyo-night&hide_border=true&area=true&bg_color=transparent`}
               alt="GitHub contribution graph"
@@ -160,46 +118,44 @@ const GitHubSection = () => {
                   key={lang.name}
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${lang.pct}%` } : { width: 0 }}
-                  transition={{ duration: 1 }}
-                  className={lang.color}
+                  transition={{ duration: 1, delay: 0.6 }}
+                  className={`${lang.color}`}
+                  title={`${lang.name}: ${lang.pct}%`}
                 />
               ))}
             </div>
 
             <div className="space-y-3">
               {languages.map((lang) => (
-                <div key={lang.name} className="flex justify-between text-sm">
-                  <span>{lang.name}</span>
-                  <span>{lang.pct}%</span>
+                <div key={lang.name} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className={`w-3 h-3 rounded-full ${lang.color}`} />
+                    <span className="text-sm text-foreground">{lang.name}</span>
+                  </div>
+                  <span className="text-sm font-mono text-muted-foreground">{lang.pct}%</span>
                 </div>
               ))}
             </div>
 
             {/* GitHub Stats Card */}
-            <div className="mt-6">
-              <img
-                src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&theme=transparent&hide_border=true&include_all_commits=true&title_color=34d399&text_color=94a3b8&icon_color=34d399`}
-                alt="GitHub stats"
-                className="w-full rounded-lg"
-                loading="lazy"
-              />
-            </div>
+          <div className="mt-6">
+            <img
+              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&theme=transparent&hide_border=true&include_all_commits=true&count_private=false&title_color=34d399&text_color=94a3b8&icon_color=34d399`}
+              alt="GitHub stats"
+              className="w-full rounded-lg"
+              loading="lazy"
+          />
+      </div>
 
-            {/* Dynamic Streak */}
-            <div className="mt-6 text-center">
-              <div className="text-sm text-muted-foreground mb-1">
-                Current Streak
-              </div>
-
-              <div className="text-4xl font-bold text-emerald-400">
-                {streak}
-              </div>
-
-              <div className="text-xs text-muted-foreground">
-                days
-              </div>
-            </div>
-
+          {/* GitHub Streak Stats */}
+        <div className="mt-4">
+          <img
+            src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&t=${Date.now()}`}
+            alt="GitHub Streak Stats"
+            className="w-full rounded-lg"
+            loading="lazy"
+          />
+    </div>
           </motion.div>
         </div>
       </div>
@@ -208,4 +164,3 @@ const GitHubSection = () => {
 };
 
 export default GitHubSection;
-
