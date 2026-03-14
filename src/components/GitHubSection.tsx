@@ -1,4 +1,3 @@
-```tsx
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Activity, GitCommit, Star, BookOpen, Users, Code } from "lucide-react";
@@ -209,4 +208,4 @@ const GitHubSection = () => {
 };
 
 export default GitHubSection;
-```
+
