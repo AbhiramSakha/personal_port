@@ -150,11 +150,11 @@ const GitHubSection = () => {
           {/* GitHub Streak Stats */}
         <div className="mt-4">
           <img
-            src={`https://streak-stats.demolab.com?user=AbhiramSakha&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&t=${Date.now()}`}
+            src={`https://streak-stats.demolab.com?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=34d399&fire=34d399&currStreakLabel=34d399&t=${Date.now()}`}
             alt="GitHub Streak Stats"
             className="w-full rounded-lg"
             loading="lazy"
-        />
+          />
     </div>
           </motion.div>
         </div>
