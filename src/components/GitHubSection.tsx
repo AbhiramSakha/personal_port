@@ -1,3 +1,4 @@
+```tsx
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Activity, GitCommit, Star, BookOpen, Users, Code } from "lucide-react";
@@ -29,24 +30,24 @@ const GitHubSection = () => {
     const fetchGitHubData = async () => {
       try {
 
-        /* Fetch user data */
+        /* Fetch user profile */
         const userRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
         const user = await userRes.json();
 
-        /* Fetch repos */
+        /* Fetch repositories */
         const reposRes = await fetch(
           `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`
         );
         const repos = await reposRes.json();
 
         const totalStars = Array.isArray(repos)
-          ? repos.reduce((sum, repo) => sum + repo.stargazers_count, 0)
+          ? repos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0)
           : 0;
 
         setStats([
-          { icon: BookOpen, label: "Public Repos", value: String(user.public_repos) },
+          { icon: BookOpen, label: "Public Repos", value: String(user.public_repos ?? "—") },
           { icon: GitCommit, label: "Contributions", value: "731+" },
-          { icon: Users, label: "Followers", value: String(user.followers) },
+          { icon: Users, label: "Followers", value: String(user.followers ?? "—") },
           { icon: Star, label: "Stars Earned", value: String(totalStars) },
         ]);
 
@@ -57,8 +58,10 @@ const GitHubSection = () => {
 
         const contribData = await contribRes.json();
 
-        const days = contribData.contributionsCollection.contributionCalendar.weeks
-          .flatMap((week) => week.contributionDays)
+        const weeks = contribData.contributions.weeks;
+
+        const days = weeks
+          .flatMap((week: any) => week.contributionDays)
           .reverse();
 
         let streakCount = 0;
@@ -140,7 +143,7 @@ const GitHubSection = () => {
             />
           </motion.div>
 
-          {/* Languages + Streak */}
+          {/* Language Usage + Stats */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -179,6 +182,7 @@ const GitHubSection = () => {
                 src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&theme=transparent&hide_border=true&include_all_commits=true&title_color=34d399&text_color=94a3b8&icon_color=34d399`}
                 alt="GitHub stats"
                 className="w-full rounded-lg"
+                loading="lazy"
               />
             </div>
 
@@ -205,3 +209,4 @@ const GitHubSection = () => {
 };
 
 export default GitHubSection;
+```
