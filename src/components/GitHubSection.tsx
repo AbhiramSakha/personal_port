@@ -146,16 +146,7 @@ const GitHubSection = () => {
               loading="lazy"
           />
       </div>
-            {/* GitHub PR Stats */}
-<div className="mt-4">
-  <img
-    src={`https://github-readme-stats.vercel.app/api?username=AbhiramSakha&show_icons=true&hide_border=true&count_private=true&include_all_commits=true&theme=tokyonight&custom_title=Total%20PRs`}
-    alt="GitHub PRs"
-    className="w-full rounded-lg"
-    loading="lazy"
-  />
-</div>
-
+            
           {/* GitHub Streak Stats */}
         <div className="mt-4">
           <img
