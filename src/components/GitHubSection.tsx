@@ -140,7 +140,7 @@ const GitHubSection = () => {
             {/* GitHub Stats Card */}
           <div className="mt-6">
             <img
-              src={"https://github-readme-stats.vercel.app/api?username=AbhiramSakha&theme=transparent&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&rank_icon=github&title_color=34d399&text_color=94a3b8&icon_color=34d399"}
+              src={"https://github-readme-stats-sigma-five.vercel.app/api?username=AbhiramSakha&theme=tokyonight&show_icons=true&hide_border=true&count_private=true&include_all_commits=true"}
               alt="GitHub Stats Card"
               className="w-full rounded-lg"
               loading="lazy"
