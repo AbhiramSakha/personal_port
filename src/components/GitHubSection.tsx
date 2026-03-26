@@ -150,7 +150,7 @@ const GitHubSection = () => {
           {/* GitHub Streak Stats */}
         <div className="mt-4">
           <img
-            src={`https://nirzak-streak-stats.vercel.app/?user=AbhiramSakha&theme=tokyonight&hide_border=true&background=0d1117&ring=34d399&fire=34d399&currStreakLabel=34d399&sideNums=34d399&currStreakNum=34d399&dates=9ca3af&t=${Date.now()}`}
+            src={`https://streak-stats.demolab.com/?user=AbhiramSakha&theme=dark&hide_border=true&background=0D1117&ring=34d399&fire=34d399&currStreakLabel=34d399&sideNums=34d399&currStreakNum=34d399&dates=9ca3af&cache_seconds=1800&t=${Date.now()}`}
             alt="GitHub Streak Stats"
             className="w-full rounded-lg"
             loading="lazy"
