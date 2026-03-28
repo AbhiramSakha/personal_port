@@ -140,7 +140,7 @@ const GitHubSection = () => {
             {/* GitHub Stats Card */}
           <div className="mt-6">
             <img
-              src={"https://github-readme-stats-eight-theta.vercel.app/api?username=AbhiramSakha&theme=tokyonight&show_icons=true&hide_border=true&count_private=true&include_all_commits=true&cache_seconds=7200"}
+              src={"https://github-readme-stats-eight-theta.vercel.app/api?username=AbhiramSakha&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=false&title_color=34d399&text_color=94a3b8&icon_color=34d399"}
               alt="GitHub Stats Card"
               className="w-full rounded-lg"
               loading="lazy"
@@ -150,7 +150,7 @@ const GitHubSection = () => {
           {/* GitHub Streak Stats */}
         <div className="mt-4">
           <img
-            src={`https://streak-stats.demolab.com/?user=AbhiramSakha&theme=dark&hide_border=true&background=0D1117&ring=34d399&fire=34d399&currStreakLabel=34d399&sideNums=34d399&currStreakNum=34d399&dates=9ca3af&cache_seconds=1800&t=${Date.now()}`}
+            src={`https://streak-stats.demolab.com/?user=Abhiramsakha&theme=dark&hide_border=true&background=0D1117&ring=34d399&fire=34d399&currStreakLabel=34d399&sideNums=34d399&currStreakNum=34d399&dates=9ca3af&cache_seconds=0&t=${timestamp}`}
             alt="GitHub Streak Stats"
             className="w-full rounded-lg"
             loading="lazy"
