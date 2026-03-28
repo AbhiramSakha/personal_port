@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Activity, GitCommit, Star, BookOpen, Users, Code } from "lucide-react";
-
+const timestamp = Date.now();
 const languages = [
   { name: "Python", pct: 40, color: "bg-blue-500" },
   { name: "Jupyter Notebook", pct: 35, color: "bg-orange-500" },
